@@ -1,0 +1,25 @@
+.allInputBox {
+    margin: 2em;
+    border: 5px solid black;
+}
+
+.center {
+    text-align: center;
+}
+
+.circleDiv {
+    position:absolute;
+    opacity: 0.7;
+}
+
+.squareDiv {
+    position: absolute;
+    opacity: 0.7;
+}
+
+.shapeBox {
+    position: relative;
+    height:500px;
+    width:500px;
+    border:5px solid black;
+}
