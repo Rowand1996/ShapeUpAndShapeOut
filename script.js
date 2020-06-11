@@ -16,7 +16,6 @@ class Shape {
     }
 
     addToBox = () => {
-
         let xy = this.getPosition();
 
         this.div.style.top = xy[0] + "px";
@@ -63,12 +62,10 @@ class Circle extends Shape {
             radius = 500 / 2;
         }
         
-        // this.shape = "Circle";
         this.radius = radius;
         this.height = radius * 2;
         this.width = radius * 2;
         this.area = Math.PI * (radius * radius);
-
         
         this.div.classList.add("circleDiv");
 
@@ -98,7 +95,6 @@ class Square extends Shape {
             sideLength = 500;
         }
 
-        // this.shape = "Square";
         this.sideLength = sideLength;
         this.height = sideLength;
         this.width = sideLength;
@@ -127,13 +123,11 @@ class Rectangle extends Shape {
             width = 500;
         }
 
-        // this.shape = "Rectangle";
         this.width = width;
         this.height = height;
         this.area = (width * height);
         this.perimeter = ((width * 2) +  (height * 2));
 
-        // this.div = document.createElement("div");
         this.div.classList.add("rectangleDiv");
 
         this.div.style.height = this.height + "px";
@@ -157,12 +151,10 @@ class Triangle extends Shape {
             height = 500;
         }
 
-        // this.shape = "Triangle";
         this.height = height;
         this.width = height;
         this.area = (.5 * height * height);
     
-        // this.div = document.createElement("div");
         this.div.classList.add("triangleDiv");
 
         this.div.style.height = 0 + "px";
