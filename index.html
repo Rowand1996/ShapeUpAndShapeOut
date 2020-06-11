@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Shape Up Or Shape Out</title>
 </head>
 
@@ -25,8 +25,26 @@
             <div class="input-group-prepend">
                 <button class="btn btn-primary btn-large" onclick="createSquare()">Make Square</button>
             </div>
-            <input type="text" class="form-control squareSideLength" placeholder="Side Length px" aria-label="Recipient's username"
-                aria-describedby="basic-addon2">
+            <input type="text" class="form-control squareSideLength" placeholder="Side Length px"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-primary btn-large" onclick="createRectangle()">Make Rectangle</button>
+            </div>
+            <input type="text" class="form-control rectangleWidth" placeholder="Width px"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="text" class="form-control rectangleHeight" placeholder="Height px"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-primary btn-large" onclick="createTriangle()">Make Triangle</button>
+            </div>
+            <input type="text" class="form-control triangleHeight" placeholder="Height px"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
         </div>
 
     </div>

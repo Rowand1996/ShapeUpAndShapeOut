@@ -1,41 +1,138 @@
-// class Shape {
-//     constructor(){
+class Shape {
+    constructor() {
+    }
 
-//     }
-// }
+    addToBox = () => {
 
-class Circle {
-    constructor(radius) {
-        this.radius = radius;
-        let circleDiv = document.createElement("div");
-        circleDiv.classList.add("circleDiv");
-        let xy = randomCirclePosition();
-        circleDiv.style.backgroundColor = "black";
-        circleDiv.style.height = 2 * radius + "px";
-        circleDiv.style.width = 2 * radius + "px";
-        circleDiv.style.borderRadius = radius + "px";
-        circleDiv.style.top = xy[0] + "px";
-        circleDiv.style.left = xy[1] + "px";
-        circleDiv.style.backgroundColor = getRandomColor();
-        console.log(circleDiv.style.top,circleDiv.style.left);
-        $(".shapeBox").append(circleDiv);
+        let xy = this.getPosition();
+
+        this.div.style.top = xy[0] + "px";
+        this.div.style.left = xy[1] + "px";
+
+        $(".shapeBox").append(this.div);
+    }
+
+    getPosition = () => {
+        let shapeBoxWidth = $(".shapeBox").width();
+        let shapeBoxHeight = $(".shapeBox").height();
+
+        var randomX = Math.floor(Math.random() * (shapeBoxWidth - this.height));
+        var randomY = Math.floor(Math.random() * (shapeBoxHeight - this.width));
+
+        return [randomX, randomY];
+    }
+
+    getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 }
 
-class Square {
-    constructor(sideLength) {
-        this.sideLength = sideLength;
-        let squareDiv = document.createElement("div");
-        squareDiv.classList.add("squareDiv");
-        let xy = randomSquarePosition();
-        squareDiv.style.backgroundColor = "black";
-        squareDiv.style.height = sideLength + "px";
-        squareDiv.style.width = sideLength + "px";
-        squareDiv.style.top = xy[0] + "px";
-        squareDiv.style.left = xy[1] + "px";
-        squareDiv.style.backgroundColor = getRandomColor();
+class Circle extends Shape {
+    constructor(radius) {
+        super();
 
-        $(".shapeBox").append(squareDiv);
+        //dont allow a shape that is bigger than the box!
+        if (radius * 2 > 500) {
+            radius = 500 / 2;
+        }
+        
+        this.radius = radius;
+        this.height = radius * 2;
+        this.width = radius * 2;
+
+        this.div = document.createElement("div");
+        this.div.classList.add("circleDiv");
+
+        this.div.style.height = this.height + "px";
+        this.div.style.width = this.width + "px";
+        this.div.style.backgroundColor = this.getRandomColor();
+
+        this.div.style.borderRadius = radius + "px";
+
+        this.addToBox();
+    }
+}
+
+class Square extends Shape {
+    constructor(sideLength) {
+        super();
+
+        //dont allow a shape that is bigger than the box!
+        if (sideLength > 500) {
+            sideLength = 500;
+        }
+
+        this.sideLength = sideLength;
+        this.height = sideLength;
+        this.width = sideLength;
+
+        this.div = document.createElement("div");
+        this.div.classList.add("squareDiv");
+
+        this.div.style.height = this.height + "px";
+        this.div.style.width = this.width + "px";
+        this.div.style.backgroundColor = this.getRandomColor();
+
+        this.addToBox();
+    }
+}
+
+class Rectangle extends Shape {
+    constructor(width, height) {
+        super();
+
+        //dont allow a shape that is bigger than the box!
+        if (height > 500) {
+            height = 500;
+        }
+        if (width > 500) {
+            width = 500;
+        }
+
+        this.width = width;
+        this.height = height;
+
+        this.div = document.createElement("div");
+        this.div.classList.add("rectangleDiv");
+
+        this.div.style.height = this.height + "px";
+        this.div.style.width = this.width + "px";
+        this.div.style.backgroundColor = this.getRandomColor();
+
+        this.addToBox();
+    }
+}
+
+class Triangle extends Shape {
+    constructor(height) {
+        super();
+
+        //dont allow a shape that is bigger than the box!
+        if (height > 500) {
+            height = 500;
+        }
+
+        this.height = height;
+        this.width = height;
+    
+        this.div = document.createElement("div");
+        this.div.classList.add("triangleDiv");
+
+        this.div.style.height = 0 + "px";
+        this.div.style.width = 0 + "px";
+        this.div.style.borderBottom = this.height + "px";
+        this.div.style.borderBottomColor = this.getRandomColor();
+        this.div.style.borderBottomStyle = "solid";
+        this.div.style.borderRight = this.height + "px";
+        this.div.style.borderRightStyle = "solid";
+        this.div.style.borderRightColor = "transparent";
+
+        this.addToBox();
     }
 }
 
@@ -45,34 +142,18 @@ let createSquare = () => {
 }
 
 let createCircle = () => {
-    let circleRadius = $(".circleRadius").val();
-    let circle = new Circle(circleRadius);
+    let radius = $(".circleRadius").val();
+    let circle = new Circle(radius);
 }
 
-let randomCirclePosition = () => {
-    let circleRadius = $(".circleRadius").val();
-    let circleDiameter = 2 * circleRadius;
-    let shapeBoxWidth = $(".shapeBox").width();
-    let shapeBoxHeight = $(".shapeBox").height();
-    var randomX = Math.floor(Math.random() * ((shapeBoxWidth - circleDiameter) - 0) + 0);
-    var randomY = Math.floor(Math.random() * ((shapeBoxHeight - circleDiameter) - 0) + 0);
-    return [randomX, randomY];
+let createRectangle = () => {
+    let width = $(".rectangleWidth").val();
+    let height = $(".rectangleHeight").val();
+    let rectangle = new Rectangle(width, height);
 }
 
-let randomSquarePosition = () => {
-    let squareSideLength = $(".squareSideLength").val();
-    let shapeBoxWidth = $(".shapeBox").width();
-    let shapeBoxHeight = $(".shapeBox").height();
-    var randomX = Math.floor(Math.random() * (( shapeBoxWidth - squareSideLength) - 0) + 0);
-    var randomY = Math.floor(Math.random() * (( shapeBoxHeight - squareSideLength) - 0) + 0);
-    return [randomX, randomY];
+let createTriangle = () => {
+    let height = $(".triangleHeight").val();
+    let triangle = new Triangle(height);
 }
 
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
